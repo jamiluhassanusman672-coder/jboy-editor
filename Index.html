@@ -1,1 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>J BOY EDITOR — Artwork &amp; Graphic Design</title>
+<meta name="description" content="J BOY EDITOR — personal artwork and graphic design. Photo edits, posters, thumbnails and brand visuals." />
+<meta name="theme-color" content="#0b0b10" />
+<meta property="og:title" content="J BOY EDITOR — Artwork &amp; Graphic Design" />
+<meta property="og:description" content="Personal artwork and graphic design portfolio of J BOY EDITOR." />
+<meta property="og:type" content="website" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%230b0b10'/%3E%3Crect x='3' y='2' width='4' height='4' fill='%23ff3d8b'/%3E%3Crect x='9' y='6' width='4' height='4' fill='%23ff3d8b'/%3E%3Crect x='3' y='10' width='4' height='4' fill='%238b5cf6'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#0b0b10; --bg-2:#101018; --card:#15151f; --line:rgba(255,255,255,.09);
+    --pink:#ff3d8b; --pink-soft:#ff8ab8; --violet:#8b5cf6;
+    --text:#f5f5f9; --muted:#9b9bae; --radius:18px; --max:1120px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth; scroll-padding-top:80px}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:"Space Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
+    line-height:1.65; -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  }
+  img{max-width:100%; display:block}
+  a{color:inherit; text-decoration:none}
+  h1,h2,h3{line-height:1.15; margin:0; letter-spacing:-.02em}
+  .wrap{width:100%; max-width:var(--max); margin:0 auto; padding:0 20px}
+  .pixel{font-family:"Press Start 2P",monospace; letter-spacing:0; line-height:1.7}
+
+  /* ---------- nav ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(11,11,16,.78); backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{display:flex; align-items:center; justify-content:space-between; height:66px}
+  .brand{display:flex; align-items:center; gap:10px; font-weight:700; letter-spacing:.14em; font-size:.82rem}
+  .brand .tag{color:var(--muted); font-weight:500; letter-spacing:.2em; font-size:.62rem; display:block}
+  .links{display:flex; align-items:center; gap:26px}
+  .links a{font-size:.88rem; color:#cfcfdc; transition:color .2s}
+  .links a:hover{color:var(--pink)}
+  .nav-cta{
+    border:1px solid var(--line); padding:9px 16px; border-radius:999px;
+    font-size:.82rem; background:#191922; transition:.2s;
+  }
+  .nav-cta:hover{border-color:var(--pink); color:var(--pink)}
+  .burger{display:none; background:none; border:1px solid var(--line); border-radius:10px; padding:9px 11px; cursor:pointer}
+  .burger span{display:block; width:18px; height:2px; background:var(--text); margin:4px 0; transition:.25s}
+  .burger.open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+  .burger.open span:nth-child(2){opacity:0}
+  .burger.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative; padding:88px 0 70px; overflow:hidden}
+  .hero::before{
+    content:""; position:absolute; inset:-20% -10% auto -10%; height:640px;
+    background:
+      radial-gradient(circle at 22% 28%, rgba(255,61,139,.28), transparent 58%),
+      radial-gradient(circle at 78% 12%, rgba(139,92,246,.26), transparent 55%);
+    filter:blur(10px); pointer-events:none;
+  }
+  .hero::after{
+    content:""; position:absolute; inset:0; pointer-events:none; opacity:.5;
+    background-image:linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
+                     linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
+    background-size:48px 48px;
+    mask-image:radial-gradient(circle at 50% 30%, #000 20%, transparent 78%);
+    -webkit-mask-image:radial-gradient(circle at 50% 30%, #000 20%, transparent 78%);
+  }
+  .hero-inner{position:relative; z-index:1; max-width:760px}
+  .badge{
+    display:inline-flex; align-items:center; gap:8px; font-size:.7rem; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--pink-soft); border:1px solid rgba(255,61,139,.35);
+    background:rgba(255,61,139,.08); padding:7px 14px; border-radius:999px; margin-bottom:26px;
+  }
+  .dot{width:6px; height:6px; border-radius:50%; background:var(--pink); box-shadow:0 0 12px var(--pink)}
+  .hero h1{font-size:clamp(2.4rem,7.4vw,4.7rem); font-weight:700}
+  .hero h1 em{
+    font-style:normal; background:linear-gradient(100deg,var(--pink),var(--violet));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .hero p.lede{color:var(--muted); font-size:clamp(1rem,2.4vw,1.16rem); margin:22px 0 34px; max-width:56ch}
+  .hero-actions{display:flex; flex-wrap:wrap; gap:14px; align-items:center}
+  .btn{
+    display:inline-flex; align-items:center; gap:10px; padding:14px 26px; border-radius:999px;
+    font-weight:600; font-size:.94rem; transition:transform .2s, box-shadow .2s, background .2s;
+  }
+  .btn-primary{
+    background:linear-gradient(100deg,var(--pink),#ff6aa5); color:#1a0710;
+    box-shadow:0 14px 34px -14px rgba(255,61,139,.85);
+  }
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 20px 40px -14px rgba(255,61,139,.95)}
+  .btn-ghost{border:1px solid var(--line); background:#15151d}
+  .btn-ghost:hover{border-color:var(--pink-soft); transform:translateY(-2px)}
+  .stats{display:flex; flex-wrap:wrap; gap:38px; margin-top:52px}
+  .stat b{display:block; font-size:1.5rem; color:#fff}
+  .stat span{font-size:.76rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted)}
+
+  /* ---------- marquee ---------- */
+  .marquee{
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    background:var(--bg-2); overflow:hidden; padding:13px 0;
+  }
+  .track{display:flex; gap:44px; width:max-content; animation:slide 26s linear infinite}
+  .track span{font-size:.74rem; letter-spacing:.26em; text-transform:uppercase; color:#7d7d92; white-space:nowrap}
+  .track span::after{content:"◆"; margin-left:44px; color:var(--pink); font-size:.6rem}
+  @keyframes slide{to{transform:translateX(-50%)}}
+
+  /* ---------- sections ---------- */
+  section{padding:82px 0}
+  .eyebrow{
+    font-size:.72rem; letter-spacing:.26em; text-transform:uppercase; color:var(--pink-soft);
+    margin-bottom:14px; display:block;
+  }
+  .sec-head{display:flex; flex-wrap:wrap; align-items:end; justify-content:space-between; gap:18px; margin-bottom:42px}
+  .sec-head h2{font-size:clamp(1.7rem,4.6vw,2.5rem)}
+  .sec-head p{color:var(--muted); margin:0; max-width:42ch; font-size:.95rem}
+
+  .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(258px,1fr)); gap:20px}
+  .tile{
+    position:relative; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;
+    background:var(--card); cursor:pointer; text-align:left; padding:0; color:inherit;
+    transition:transform .28s, border-color .28s;
+  }
+  .tile:hover{transform:translateY(-5px); border-color:rgba(255,61,139,.45)}
+  .thumb{aspect-ratio:4/3; position:relative; display:grid; place-items:center}
+  .thumb span{
+    font-family:"Press Start 2P",monospace; font-size:.72rem; color:rgba(255,255,255,.9);
+    text-shadow:0 2px 16px rgba(0,0,0,.6); padding:0 14px; text-align:center; line-height:1.9;
+  }
+  .thumb::after{
+    content:""; position:absolute; inset:0;
+    background-image:linear-gradient(rgba(0,0,0,.16) 1px, transparent 1px),
+                     linear-gradient(90deg, rgba(0,0,0,.16) 1px, transparent 1px);
+    background-size:16px 16px; mix-blend-mode:overlay; opacity:.62;
+  }
+  .g1{background:linear-gradient(135deg,#ff3d8b,#7a1f4d)}
+  .g2{background:linear-gradient(135deg,#8b5cf6,#2a1a5e)}
+  .g3{background:linear-gradient(135deg,#ff8ab8,#8b5cf6)}
+  .g4{background:linear-gradient(135deg,#22d3ee,#1e3a8a)}
+  .g5{background:linear-gradient(135deg,#fbbf24,#b45309)}
+  .g6{background:linear-gradient(135deg,#34d399,#065f46)}
+  .tile-body{padding:16px 18px 20px; border-top:1px solid var(--line)}
+  .tile-body h3{font-size:1rem; margin-bottom:5px}
+  .tile-body p{margin:0; font-size:.82rem; color:var(--muted)}
+  .chip{
+    display:inline-block; font-size:.66rem; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--pink-soft); border:1px solid rgba(255,61,139,.3); border-radius:999px;
+    padding:4px 10px; margin-bottom:10px;
+  }
+
+  /* ---------- about ---------- */
+  .about{display:grid; grid-template-columns:1.05fr .95fr; gap:56px; align-items:center}
+  .about p{color:#c3c3d2; margin:0 0 16px}
+  .about ul{list-style:none; padding:0; margin:26px 0 0; display:grid; gap:12px}
+  .about li{display:flex; gap:12px; font-size:.94rem; color:#d6d6e2}
+  .about li b{color:var(--pink)}
+  .panel{
+    border:1px solid var(--line); border-radius:24px; padding:30px;
+    background:linear-gradient(160deg,rgba(255,61,139,.1),rgba(139,92,246,.08)), var(--card);
+  }
+  .panel h3{font-size:1.05rem; margin-bottom:18px}
+  .bar{margin-bottom:16px}
+  .bar div{display:flex; justify-content:space-between; font-size:.82rem; color:var(--muted); margin-bottom:7px}
+  .bar i{display:block; height:6px; border-radius:99px; background:#232333; overflow:hidden}
+  .bar i b{display:block; height:100%; border-radius:99px; background:linear-gradient(90deg,var(--pink),var(--violet))}
+
+  /* ---------- contact ---------- */
+  .contact-card{
+    border:1px solid var(--line); border-radius:26px; padding:clamp(28px,5vw,58px);
+    background:
+      radial-gradient(circle at 88% 8%, rgba(139,92,246,.22), transparent 52%),
+      radial-gradient(circle at 6% 92%, rgba(255,61,139,.2), transparent 52%),
+      var(--bg-2);
+    text-align:center;
+  }
+  .contact-card h2{font-size:clamp(1.8rem,5vw,2.9rem); margin-bottom:16px}
+  .contact-card p{color:var(--muted); max-width:48ch; margin:0 auto 32px}
+  .socials{display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin-top:30px}
+  .socials a{
+    border:1px solid var(--line); background:#15151f; border-radius:999px;
+    padding:10px 20px; font-size:.82rem; letter-spacing:.06em; transition:.2s;
+  }
+  .socials a:hover{border-color:var(--pink); color:var(--pink); transform:translateY(-2px)}
+
+  footer{border-top:1px solid var(--line); padding:34px 0; background:var(--bg-2)}
+  .foot{display:flex; flex-wrap:wrap; gap:14px; align-items:center; justify-content:space-between; font-size:.82rem; color:var(--muted)}
+  .foot a:hover{color:var(--pink)}
+
+  /* ---------- lightbox ---------- */
+  .lb{
+    position:fixed; inset:0; z-index:90; display:none; place-items:center; padding:22px;
+    background:rgba(6,6,10,.86); backdrop-filter:blur(8px);
+  }
+  .lb.on{display:grid}
+  .lb-box{
+    width:min(680px,100%); border:1px solid var(--line); border-radius:22px; overflow:hidden;
+    background:var(--card);
+  }
+  .lb-visual{aspect-ratio:16/10; display:grid; place-items:center; position:relative}
+  .lb-visual h3{font-family:"Press Start 2P",monospace; font-size:.9rem; padding:0 20px; text-align:center; line-height:2}
+  .lb-text{padding:20px 24px 26px}
+  .lb-text p{margin:0; color:var(--muted); font-size:.9rem}
+  .lb-close{
+    position:absolute; top:16px; right:16px; width:38px; height:38px; border-radius:50%;
+    border:1px solid var(--line); background:#0f0f16; color:#fff; font-size:1.1rem; cursor:pointer;
+  }
+
+  /* ---------- reveal ---------- */
+  .reveal{opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s ease}
+  .reveal.in{opacity:1; transform:none}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:860px){
+    .about{grid-template-columns:1fr; gap:34px}
+    .links{
+      position:fixed; inset:66px 0 auto 0; flex-direction:column; align-items:stretch; gap:0;
+      background:#0e0e15; border-bottom:1px solid var(--line); padding:10px 20px 22px;
+      transform:translateY(-140%); transition:transform .3s ease; z-index:40;
+    }
+    .links.open{transform:none}
+    .links a{padding:14px 0; border-bottom:1px solid var(--line); font-size:1rem}
+    .links .nav-cta{text-align:center; margin-top:16px; border-bottom:0}
+    .burger{display:block}
+    .hero{padding:64px 0 54px}
+    .stats{gap:26px}
+    section{padding:62px 0}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none !important; transition:none !important}
+    .reveal{opacity:1; transform:none}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="J BOY EDITOR home">
+      <svg viewBox="0 0 12 12" width="26" height="26" aria-hidden="true">
+        <rect x="1" y="1" width="3" height="3" fill="#ff3d8b"/>
+        <rect x="5" y="1" width="3" height="3" fill="#ff8ab8"/>
+        <rect x="9" y="2" width="2" height="3" fill="#8b5cf6"/>
+        <rect x="1" y="5" width="3" height="3" fill="#8b5cf6"/>
+        <rect x="5" y="5" width="3" height="3" fill="#ff3d8b"/>
+        <rect x="9" y="6" width="2" height="3" fill="#ff8ab8"/>
+        <rect x="1" y="9" width="3" height="2" fill="#ff8ab8"/>
+        <rect x="5" y="9" width="3" height="2" fill="#8b5cf6"/>
+        <rect x="9" y="10" width="2" height="1" fill="#ff3d8b"/>
+      </svg>
+      <span>J BOY EDITOR<span class="tag">ARTWORK &amp; DESIGN</span></span>
+    </a>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="links" id="menu">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+      <a class="nav-cta" href="#contact">Hire me</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <span class="badge"><i class="dot"></i> Open for commissions</span>
+      <h1>Retro soul,<br /><em>modern edits.</em></h1>
+      <p class="lede">
+        I'm J BOY — I turn plain photos into loud, pixel-glitched, colour-drenched
+        artwork. Portraits, posters, thumbnails and brand visuals, built one square at a time.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#work">See the work →</a>
+        <a class="btn btn-ghost" href="#contact">Start a project</a>
+      </div>
+      <div class="stats">
+        <div class="stat"><b>120+</b><span>Edits made</span></div>
+        <div class="stat"><b>5 yrs</b><span>Designing</span></div>
+        <div class="stat"><b>24 h</b><span>Reply time</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="track">
+      <span>Photo editing</span><span>Poster design</span><span>Pixel art</span><span>Thumbnails</span><span>Logo &amp; brand</span><span>Social kits</span>
+      <span>Photo editing</span><span>Poster design</span><span>Pixel art</span><span>Thumbnails</span><span>Logo &amp; brand</span><span>Social kits</span>
+    </div>
+  </div>
+
+  <section id="work">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div>
+          <span class="eyebrow">Selected work</span>
+          <h2>Artwork &amp; graphic projects</h2>
+        </div>
+        <p>Tap any tile to enlarge. Replace these placeholder tiles with your own images — the markup is one line each.</p>
+      </div>
+
+      <div class="grid">
+        <button class="tile reveal" data-key="g1" data-title="NEON PORTRAIT" data-desc="Chromatic portrait edit — split-tone lighting, grain overlay and a hand-placed pixel grid.">
+          <div class="thumb g1"><span>NEON<br />PORTRAIT</span></div>
+          <div class="tile-body"><span class="chip">Photo edit</span><h3>Neon Portrait Series</h3><p>Colour grading · 2026</p></div>
+        </button>
+
+        <button class="tile reveal" data-key="g2" data-title="ARCADE POSTER" data-desc="Event poster built on a 16-bit grid: extruded type, dither shading and a limited 5-colour palette.">
+          <div class="thumb g2"><span>ARCADE<br />POSTER</span></div>
+          <div class="tile-body"><span class="chip">Poster</span><h3>Arcade Night</h3><p>Print · A2</p></div>
+        </button>
+
+        <button class="tile reveal" data-key="g3" data-title="PIXEL IDENTITY" data-desc="Avatar and identity system for a creator brand — pixel face, three-tone palette, sticker pack.">
+          <div class="thumb g3"><span>PIXEL<br />IDENTITY</span></div>
+          <div class="tile-body"><span class="chip">Branding</span><h3>Pixel Identity Kit</h3><p>Logo · avatars</p></div>
+        </button>
+
+        <button class="tile reveal" data-key="g4" data-title="THUMBNAIL SET" data-desc="High-contrast YouTube thumbnail set: bold subject cut-outs, rim light and readable type at 168px wide.">
+          <div class="thumb g4"><span>THUMBNAIL<br />SET</span></div>
+          <div class="tile-body"><span class="chip">Thumbnails</span><h3>Creator Thumbnail Set</h3><p>10-pack · 1280×720</p></div>
+        </button>
+
+        <button class="tile reveal" data-key="g5" data-title="GOLD SERIES" data-desc="Luxury-inspired edit study: warm gold duotone, soft bloom and layered texture.">
+          <div class="thumb g5"><span>GOLD<br />SERIES</span></div>
+          <div class="tile-body"><span class="chip">Photo edit</span><h3>Gold Series</h3><p>Duotone study</p></div>
+        </button>
+
+        <button class="tile reveal" data-key="g6" data-title="GREEN SCREEN" data-desc="Product-style composition on a mint backdrop — cut-outs, contact shadows, clean spacing.">
+          <div class="thumb g6"><span>GREEN<br />SCREEN</span></div>
+          <div class="tile-body"><span class="chip">Layout</span><h3>Green Screen Set</h3><p>Product visuals</p></div>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap about">
+      <div class="reveal">
+        <span class="eyebrow">About</span>
+        <h2 style="font-size:clamp(1.7rem,4.6vw,2.4rem); margin-bottom:20px">I design like it's 1994 — on purpose.</h2>
+        <p>
+          J BOY EDITOR is my personal artwork and graphic design website: a place for
+          experiments, commissions and everything in between. I like heavy contrast,
+          tight palettes and type that refuses to sit still.
+        </p>
+        <p>
+          Every project starts with one question — what should this <em>feel</em> like
+          before anyone reads a word?
+        </p>
+        <ul>
+          <li><b>◆</b> Fast turnaround on edits and posters</li>
+          <li><b>◆</b> Source files always included</li>
+          <li><b>◆</b> Two free revisions per project</li>
+        </ul>
+      </div>
+
+      <div class="panel reveal">
+        <h3>Toolkit</h3>
+        <div class="bar"><div><span>Photoshop</span><span>95%</span></div><i><b style="width:95%"></b></i></div>
+        <div class="bar"><div><span>Illustrator</span><span>88%</span></div><i><b style="width:88%"></b></i></div>
+        <div class="bar"><div><span>Pixel art / Aseprite</span><span>90%</span></div><i><b style="width:90%"></b></i></div>
+        <div class="bar"><div><span>HTML &amp; CSS</span><span>72%</span></div><i><b style="width:72%"></b></i></div>
+        <div class="bar" style="margin-bottom:0"><div><span>Figma</span><span>80%</span></div><i><b style="width:80%"></b></i></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div>
+          <span class="eyebrow">Services</span>
+          <h2>What I can make for you</h2>
+        </div>
+      </div>
+      <div class="grid">
+        <div class="tile reveal" style="cursor:default">
+          <div class="tile-body" style="border-top:0">
+            <span class="chip">01</span><h3>Photo editing</h3>
+            <p>Retouch, colour grade, background swaps, glow and grain — photos that look intentional.</p>
+          </div>
+        </div>
+        <div class="tile reveal" style="cursor:default">
+          <div class="tile-body" style="border-top:0">
+            <span class="chip">02</span><h3>Posters &amp; covers</h3>
+            <p>Print or digital, from event posters to album art, with a strong typographic layout.</p>
+          </div>
+        </div>
+        <div class="tile reveal" style="cursor:default">
+          <div class="tile-body" style="border-top:0">
+            <span class="chip">03</span><h3>Brand &amp; social kits</h3>
+            <p>Logos, avatars, banners and a reusable template set so your feed stays consistent.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact-card reveal">
+        <span class="eyebrow">Contact</span>
+        <h2>Got a project in mind?</h2>
+        <p>Send me the brief, the deadline and any references you like. I reply within 24 hours.</p>
+        <a class="btn btn-primary" href="mailto:hello@jboyeditor.com?subject=Project%20enquiry%20—%20J%20BOY%20EDITOR">hello@jboyeditor.com</a>
+        <div class="socials">
+          <a href="https://github.com/jamiluhassanusman672-coder" target="_blank" rel="noopener">GitHub</a>
+          <a href="#" target="_blank" rel="noopener">Instagram</a>
+          <a href="#" target="_blank" rel="noopener">Behance</a>
+          <a href="#" target="_blank" rel="noopener">X</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© <span id="year"></span> J BOY EDITOR — artwork &amp; graphic design.</span>
+    <span>Built by hand. <a href="#top">Back to top ↑</a></span>
+  </div>
+</footer>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Project preview">
+  <div class="lb-box">
+    <div class="lb-visual" id="lbVisual">
+      <button class="lb-close" id="lbClose" aria-label="Close">✕</button>
+      <h3 id="lbTitle">—</h3>
+    </div>
+    <div class="lb-text"><p id="lbDesc"></p></div>
+  </div>
+</div>
+
+<script>
+  // year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // mobile menu
+  const burger = document.getElementById('burger');
+  const menu = document.getElementById('menu');
+  burger.addEventListener('click', () => {
+    const open = menu.classList.toggle('open');
+    burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    menu.classList.remove('open');
+    burger.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+  }));
+
+  // lightbox
+  const lb = document.getElementById('lb');
+  const lbVisual = document.getElementById('lbVisual');
+  const lbTitle = document.getElementById('lbTitle');
+  const lbDesc = document.getElementById('lbDesc');
+
+  document.querySelectorAll('.tile[data-key]').forEach(tile => {
+    tile.addEventListener('click', () => {
+      const key = tile.dataset.key;
+      lbVisual.className = 'lb-visual ' + key;
+      lbTitle.textContent = tile.dataset.title;
+      lbDesc.textContent = tile.dataset.desc;
+      lb.classList.add('on');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  function closeLb(){
+    lb.classList.remove('on');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('lbClose').addEventListener('click', closeLb);
+  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
+
+  // scroll reveal
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(en => {
+        if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+  }
+</script>
+
+</body>
+</html>
 
